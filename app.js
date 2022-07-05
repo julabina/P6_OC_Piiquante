@@ -2,10 +2,11 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 require('dotenv').config();
+const userRoutes = require('./routes/User');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://' + process.env.DB_CONNECT + '@cluster0.9vlpb.mongodb.net/?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://' + process.env.DB_CONNECT + '@cluster0.9vlpb.mongodb.net/piiquante?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -22,5 +23,7 @@ app.use((req, res, next) => {
 });
 
 app.use(morgan('dev'));
+
+app.use('/api/auth', userRoutes);
 
 module.exports = app;
