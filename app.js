@@ -3,6 +3,8 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const userRoutes = require('./routes/User');
+const sauceRoutes = require('./routes/Sauce');
+const path = require('path');
 
 const app = express();
 
@@ -25,5 +27,7 @@ app.use((req, res, next) => {
 app.use(morgan('dev'));
 
 app.use('/api/auth', userRoutes);
+app.use('/api/sauces', sauceRoutes);
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 module.exports = app;
