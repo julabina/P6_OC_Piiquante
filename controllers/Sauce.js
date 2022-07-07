@@ -1,6 +1,13 @@
 const Sauce = require('../models/Sauce');
 const fs = require('fs');
 
+/**
+ * get all sauces
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
 exports.getAllSauces = (req, res, next) => {
 
     Sauce.find()
@@ -9,6 +16,13 @@ exports.getAllSauces = (req, res, next) => {
 
 };
 
+/**
+ * get one sauce, filtered by id
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
 exports.getOneSauce = (req, res, next) => {
 
     Sauce.findOne({_id : req.params.id})
@@ -20,6 +34,13 @@ exports.getOneSauce = (req, res, next) => {
 
 }
 
+/**
+ * add one new sauce
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
 exports.createSauce = (req, res, next) => {
 
     const sauceObj = JSON.parse(req.body.sauce);
@@ -44,6 +65,13 @@ exports.createSauce = (req, res, next) => {
 
 };
 
+/**
+ * modify one sauce
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
 exports.modifySauce = (req, res, next) => {
 
     const sauceObj = req.file ? {
@@ -72,6 +100,13 @@ exports.modifySauce = (req, res, next) => {
 
 };
 
+/**
+ * delete one sauce
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
 exports.deleteSauce = (req, res, next) => {
 
     Sauce.findOne({_id: req.params.id})
@@ -96,6 +131,13 @@ exports.deleteSauce = (req, res, next) => {
 
 };
 
+/**
+ * add and remove like or dislike to one sauce
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
 exports.handleLike = (req, res, next) => {
 
     Sauce.findOne({_id: req.params.id})

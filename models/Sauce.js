@@ -15,5 +15,3 @@ const SauceSchema = mongoose.Schema({
 });
 
 module.exports = mongoose.model('Sauce', SauceSchema);
-
-/* [{type: String}] */
