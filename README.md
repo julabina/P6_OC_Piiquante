@@ -1,6 +1,6 @@
 # Piiquante
 
-Développer le back-end du site Piiquante en node-js et express, ainsi que de mongo-db pour la base de données.
+Développer le back-end du site Piiquante avec node-js et express, ainsi que de mongo-db pour la base de données.
 
 ## instructions
 
