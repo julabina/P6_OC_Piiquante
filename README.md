@@ -4,6 +4,6 @@ Développer le back-end du site Piiquante en node-js et express, ainsi que de mo
 
 ## instructions
 
-![](./readme-assets/brief.webp)
+![](./readme_assets/brief.webp)
 
-Spécifications fonctionnelles : [Link](https://github.com/julabina/P5_OC_Kanap/blob/master/Specifications%20fonctionnelles.pdf)
+Spécifications fonctionnelles : [Link](https://github.com/julabina/P6_OC_Piiquante/blob/master/readme_assets/Requirements_DW_P6.pdf)
