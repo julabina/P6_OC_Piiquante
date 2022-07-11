@@ -45,7 +45,7 @@ exports.createSauce = (req, res, next) => {
 
     const sauceObj = JSON.parse(req.body.sauce);
     delete sauceObj._id;
-    delete sauceObj._userId;
+    delete sauceObj.userId;
 
     const sauce = new Sauce({
         ...sauceObj,
