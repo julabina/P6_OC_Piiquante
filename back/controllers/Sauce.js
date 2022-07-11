@@ -75,11 +75,9 @@ exports.createSauce = (req, res, next) => {
 exports.modifySauce = (req, res, next) => {
 
     const sauceObj = req.file ? {
-        ...sauceObj,
+        ...JSON.parse(req.body.sauce),
         imageUrl: `${req.protocol}://${req.get('host')}/assets/${req.file.filename}`,
     } : { ...req.body };
-
-    delete sauceObj._userId;
 
     Sauce.findOne({_id: req.params.id})
         .then(sauce => {
@@ -89,7 +87,7 @@ exports.modifySauce = (req, res, next) => {
             if(sauce.userId !== req.auth.userId) {
                 return res.status(403).json({ error : new error('Requete non authorisée.') });
             }
-            Sauce.updateOne({_id: req.params.id}, { sauceObj, _id: req.params.id })
+            Sauce.updateOne({_id: req.params.id}, { ...sauceObj, _id: req.params.id })
                 .then(() => {
                     const message = "Sauce bien modifiée.";
                     res.status(200).json({ message });
