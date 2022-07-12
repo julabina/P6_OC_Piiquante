@@ -87,12 +87,24 @@ exports.modifySauce = (req, res, next) => {
             if(sauce.userId !== req.auth.userId) {
                 return res.status(403).json({ error : new error('Requete non authorisée.') });
             }
-            Sauce.updateOne({_id: req.params.id}, { ...sauceObj, _id: req.params.id })
-                .then(() => {
-                    const message = "Sauce bien modifiée.";
-                    res.status(200).json({ message });
-                })
-                .catch(error => res.status(500).json({ error }));
+            if(req.file) {
+                const filename = sauce.imageUrl.split('/assets/')[1];
+                fs.unlink(`assets/${filename}`, () => {
+                    Sauce.updateOne({_id: req.params.id}, { ...sauceObj, _id: req.params.id })
+                    .then(() => {
+                        const message = "Sauce bien modifiée.";
+                        res.status(200).json({ message });
+                    })
+                    .catch(error => res.status(500).json({ error }));
+                });
+            } else {
+                Sauce.updateOne({_id: req.params.id}, { ...sauceObj, _id: req.params.id })
+                    .then(() => {
+                        const message = "Sauce bien modifiée.";
+                        res.status(200).json({ message });
+                    })
+                    .catch(error => res.status(500).json({ error }));
+            }
         })
         .catch(error => res.status(500).json({ error }));
 
